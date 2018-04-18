@@ -1,8 +1,8 @@
 /*
  * Banker's Algorithm for SOFE 3950U / CSCI 3020U: Operating Systems
  *
- * Copyright (C) 2015, <GROUP MEMBERS>
- * All rights reserved.
+ * Copyright (C) 2015, Damon Barton, Irfaan Ali, Alex Ly
+  * All rights reserved.
  * 
  */
 #ifndef BANKER_H_
@@ -10,25 +10,15 @@
 
 #include <stdbool.h>
 
-#define number_of_customers 5
-#define resource_num 3
-
-typedef struct
-{
-    int thread_num;
-    int max[resource_num];
-}customer_struct;
+// Add any additional data structures or functions you want here
+// perhaps make a clean bank structure instead of several arrays...
 
 // Request resources, returns true if successful
 extern bool request_res(int n_customer, int request[]);
 
 // Release resources, returns true if successful
-extern bool release_res(int n_customer, int release[]);
+extern void release_res(int n_customer, int release[]);
 
-extern void *customer(void *arg);
-extern bool safe_checking(int available[], int allocation[][resource_num], int need[][resource_num]);
-extern void print_struct(customer_struct s);
-extern void print_array(char* title, int a[], int length, bool newline);
-extern void print_matricies();
+extern bool check_safety();
 
 #endif /* BANKER_H_ */
